@@ -1,10 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
-
+// Value object = object which attributes cannot be changed = record
 public class Card {
 
     private String suit;
     private String num;
+    private int value;
 
     private static final String[] suits = {"Spades", "Hearts", "Clubs", "Diamonds"};
     public static String[] getSuits() {return suits;}
@@ -15,13 +14,20 @@ public class Card {
     public Card(String suit, String num) {
         this.suit = suit;
         this.num = num;
+        if (num.equals("Jack") || num.equals("Queen") || num.equals("King")) {
+            this.value = 10;
+        } else if (num.equals("Ace")) {
+            this.value = 1;
+        } else {
+            this.value = Integer.parseInt(num);
+        }
     }
 
     public String getSuit() {return suit;}
-    public void setSuit(String suit) {this.suit = suit;}
 
     public String getNum() {return num;}
-    public void setNum(String num) {this.num = num;}
+
+    public int getValue() {return value;}
 
     @Override
     public String toString() {
