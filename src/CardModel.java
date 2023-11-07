@@ -110,16 +110,15 @@ public class CardModel {
                                 
                 player.clear();
                 dealer.clear();
-                blackjack();
+                blackjack();                    
 
-                if (playerHandValue() == 21) {
-                    System.out.println("Blackjack!");
-                    input = cons.readLine("> ");
-                    break;
-
-                } else {
                 while (!gameOver) {
-                    if (notBust()) {
+
+                    if (player.size() == 2 && playerHandValue() == 21) {
+                    System.out.println("Blackjack!");
+                    gameOver = true;
+
+                    } else if (notBust()) {
                         input = cons.readLine("hit or stay > ");
 
                         if (input.trim().equals("hit")) {
@@ -137,16 +136,16 @@ public class CardModel {
                             }
 
                             if (dealerHandValue() == 16) {
-                                if (getRandomBoolean(40.0f)) {
+                                if (getRandomBoolean(42.0f)) {
                                     dealer.add(draw());
                                 }
 
                             } else if (dealerHandValue() == 17) {
-                                if (getRandomBoolean(25.0f)) {
+                                if (getRandomBoolean(33.0f)) {
                                     dealer.add(draw());
                                 }
                             } else if (dealerHandValue() == 18) {
-                                if (getRandomBoolean(10.0f)) {
+                                if (getRandomBoolean(25.0f)) {
                                     dealer.add(draw());
                                 }
                             }
@@ -176,9 +175,7 @@ public class CardModel {
                     gameOver = true;
                     }
                 }
-            }
-            input = cons.readLine("> ");
-
+                input = cons.readLine("> ");
             } else {
                 System.out.println("Invalid command");
                 input = cons.readLine("> ");
